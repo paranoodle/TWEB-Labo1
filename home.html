@@ -1,0 +1,105 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Labo 1 - Karim Ghozlani et Eleonore d'Agostino</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="handlebars-v4.0.2.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script id="chance" type="x-handlebars-template">
+
+        <div class={{style}}> 
+              Hello {{name}} ({{gender}}) !
+        </div>
+    </script>
+
+    <script id="mouseCoordinates" type="x-handlebars-template">
+    {{x}} , {{y}}
+    </script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+      </head>
+
+      <body>
+
+
+        <div id="mainFrame" class="container">
+
+          <div class="container" >
+            <h1>A first look at JS</h1>
+            <p class="lead panel-body">
+              <li> When you move the mouse, the coordinates should be displayed in the sticky footer.</li>
+              <li> When you move the mouse, a person should be created with random attributes.</li>
+              <li> The current time should be displayed in the Clock panel.</li>
+              <li> When you click on the "Show alert" button, a dialog should appear. </li>
+              <li> When you click on the "Toggle Student" button, the panel should be hidden/shown.</li>
+            </p>
+          </div>
+          <div id="greeting" class="greeting"> 
+          </div>  
+          <div id="rooms" class="panel panel-info">
+            Insert rooms here: <br>
+          </div>
+          
+          <div id="clock" class="clock">
+          </div><br>
+          
+          <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+          Show Alert
+          </button>
+
+          <button type="button" id="toggle" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+          Toggle student
+          </button>
+          </div><!-- /.container -->
+        <script src="chance.js"></script>
+
+        
+        <footer class="footer" id="coordinates">
+            
+        </footer>
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+
+
+      <script src="script.js"></script>
+      <script> 
+      $( "#mainFrame" ).mousemove(function( event ) {
+        showCoordinates(event.pageX,event.pageY);
+        generateRandomPeople();  
+      });
+
+      setInterval(function() {
+        $("#clock").html(new Date().toString());
+      }, 1000);
+
+      $(document).ready(function() {
+        showRooms();
+      });
+      
+      $("#toggle").click(function () {
+        $("#greeting").slideToggle();
+      });
+      
+      $("#myButton").click(function () {
+        alert("This is an alert!");
+      });
+      </script>
+    </body>
+    </html>
